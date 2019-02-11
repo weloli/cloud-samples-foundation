@@ -11,26 +11,30 @@ abstract entity ManagedObject {
 	created: {
 		byUser: User @(
 			title: '{i18n>createdBy}',
-			odata.on.insert: #user
+			odata.on.insert: #user,
+			Core.Computed
 		);
 		at: DateTime @(
 			title: '{i18n>createdOn}',
-			odata.on.insert: #now
+			odata.on.insert: #now,
+			Core.Computed
 		);
-	} @( Core.Computed );
+	};
 	modified: {
 		byUser: User @(
 			title: '{i18n>changedBy}',
-			odata.on.update: #user
+			odata.on.update: #user,
+			Core.Computed
 		);
 		at: DateTime @(
 			title: '{i18n>changedOn}',
 			odata: {
 				on.update: #now,
 				etag
-			}
+			},
+			Core.Computed
 		);
-	} @( Core.Computed );
+	};
 }
 
 type User: String(255) @(
